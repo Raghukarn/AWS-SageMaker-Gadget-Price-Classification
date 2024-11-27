@@ -109,7 +109,7 @@ print(testpath)
 # Let's follow sagemaker
 
 # %%
-%%writefile script.py
+%%writefile script1.py
 
 import argparse
 import joblib
@@ -231,8 +231,8 @@ from sagemaker.sklearn.estimator import SKLearn
 FRAMEWORK_VESION = "0.23-1"
 
 sklearn_estimator = SKLearn(
-    entry_point="script.py",
-    role="arn:aws:iam::211125616305:role/sagemakerrole",
+    entry_point="script1.py",
+    role="<AWS_ROLE_ARN>",
     instance_count=1,
     instance_type="ml.m5.large",
     framework_version=FRAMEWORK_VESION,
@@ -270,8 +270,8 @@ model_name = "Custom-sklearn-model" + strftime("%Y-%m-%d-%H-%M-%S", gmtime())
 model = SKLearnModel(
     name = model_name,
     model_data=artifact,
-    role="arn:aws:iam::211125616305:role/sagemakerrole",
-    entry_point="script.py",
+    role="<AWS_ROLE_ARN>",
+    entry_point="script1.py",
     framework_version=FRAMEWORK_VESION
 )
 
